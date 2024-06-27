@@ -1,0 +1,99 @@
+{
+  "school": "ARCANE",
+  "range": 64,
+  "learn": {
+    "tier": 3
+  },
+  "cast": {
+    "duration": 4,
+    "haste_affected": false,
+
+    "animation": "spell_engine:two_handed_channeling",
+    "sound": {
+      "id": "spell_engine:generic_arcane_casting",
+      "randomness": 0
+
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:arcane_hit",
+        "shape": "PIPE",
+        "origin": "FEET",
+        "count": 1.0,
+        "min_speed": 0.05,
+        "max_speed": 0.1
+      }
+    ]
+  },
+  "release": {
+    "target": {
+      "type": "PROJECTILE",
+
+      "projectile": {
+        "launch_properties": {
+          "velocity": 1.0
+        },
+        "projectile": {
+          "divergence": 15.0,
+          "inherit_shooter_velocity": false,
+          "homing_angle": 16.0,
+          "client_data": {
+            "travel_particles": [
+              {
+                "particle_id": "electric_spark",
+                "shape": "CIRCLE",
+                "rotation": "LOOK",
+                "origin": "CENTER",
+                "count": 4.0,
+                "min_speed": 0.0,
+                "max_speed": 0.1
+              },
+              {
+                "particle_id": "witch",
+                "shape": "CIRCLE",
+                "rotation": "LOOK",
+                "origin": "CENTER",
+                "count": 2.0,
+                "min_speed": 0.0,
+                "max_speed": 0.1
+              }
+            ],
+            "model": {
+              "model_id": "cleannarsenal:projectile/magicmissile",
+              "scale": 1
+            }
+          }
+        }
+      }
+    },
+    "animation": "spell_engine:one_handed_projectile_release",
+    "sound": {
+      "id": "minecraft:entity.illusioner.cast_spell"
+    }
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.8
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "arcane_hit",
+          "shape": "CIRCLE",
+          "origin": "CENTER",
+          "count": 100.0,
+          "min_speed": 3.0,
+          "max_speed": 18.0
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "item_id": "runes:arcane_stone",
+    "cooldown_duration": 8
+
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "school": "PHYSICAL_MELEE",
+  "range": 3.5,
+  "learn": {
+    "tier": 1
+  },
+  "cast": {
+    "haste_affected": false,
+    "duration": 0,
+    "sound": {
+      "id": "spell_engine:generic_frost_casting",
+      "randomness": 0
+    }
+  },
+  "release": {
+    "target": {
+      "type": "CURSOR"
+    },
+    "sound": {
+      "id": "entity.iron_golem.hurt"
+    },
+    "animation": "cleannarsenal:sword_swing_first"
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "knockback": 0.5,
+          "spell_power_coefficient": 0.6
+        }
+      },
+
+      "particles": [
+        {
+          "particle_id": "cloud",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 20.0,
+          "min_speed": 0.5,
+          "max_speed": 0.9
+        }
+      ],
+      "sound": {
+        "id": "entity.iron_golem.hurt"
+      }
+    },
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "apply_mode": "ADD",
+          "effect_id": "cleannarsenal:valiant",
+          "duration": 6,
+          "amplifier": 4,
+          "show_particles": false
+        },
+        "apply_to_caster": true
+
+      }
+    }
+  ],
+  "cost": {
+    "cooldown_duration": 0.6
+  }
+}

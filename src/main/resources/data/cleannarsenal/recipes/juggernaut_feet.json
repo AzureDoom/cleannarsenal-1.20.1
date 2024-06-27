@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "cleannarsenal:something_heavy"
+    },
+    "L": {
+      "item": "minecraft:diamond"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "   ",
+    "ISI",
+    "L L"
+  ],
+  "result": {
+    "item": "cleannarsenal:juggernaut_feet"
+  }
+}

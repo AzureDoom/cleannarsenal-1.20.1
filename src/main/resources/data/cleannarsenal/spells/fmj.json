@@ -1,0 +1,97 @@
+{
+  "school": "RANGED_FIRE_TIMING",
+  "range": 96,
+  "learn": {
+    "tier": 1
+  },
+  "cast": {
+    "duration": 2,
+    "animation": "cleannarsenal:aim",
+
+    "sound": {
+      "id": "entity.warden.sonic_charge",
+      "randomness": 0
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:flame",
+        "shape": "PIPE",
+        "origin": "FEET",
+        "count": 1.0,
+        "min_speed": 0.05,
+        "max_speed": 0.1
+      }
+    ]
+  },
+  "release": {
+    "target": {
+      "type": "PROJECTILE",
+
+      "projectile": {
+        "launch_properties": {
+          "velocity": 2.0
+        },
+        "projectile": {
+          "divergence": 0.0,
+          "inherit_shooter_velocity": false,
+          "homing_angle": 2.0,
+          "client_data": {
+            "travel_particles": [
+              {
+                "particle_id": "electric_spark",
+                "shape": "CIRCLE",
+                "rotation": "LOOK",
+                "origin": "CENTER",
+                "count": 4.0,
+                "min_speed": 0.0,
+                "max_speed": 0.1
+              },
+              {
+                "particle_id": "smoke",
+                "shape": "CIRCLE",
+                "rotation": "LOOK",
+                "origin": "CENTER",
+                "count": 2.0,
+                "min_speed": 0.0,
+                "max_speed": 0.1
+              }
+            ],
+            "model": {
+              "model_id": "fire_charge",
+              "scale": 0.001
+            }
+          }
+        }
+      }
+    },
+    "animation": "cleannarsenal:recoil",
+    "sound": {
+      "id": "minecraft:entity.generic.explode"
+    }
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 2.0
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "lava",
+          "shape": "CIRCLE",
+          "origin": "CENTER",
+          "count": 100.0,
+          "min_speed": 3.0,
+          "max_speed": 18.0
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "item_id": "runes:fire_stone",
+    "cooldown_duration": 0.5
+
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "school": "PHYSICAL_MELEE",
+  "range": 3,
+  "learn": {
+    "tier": 2
+  },
+  "cast": {
+    "duration": 8,
+    "animation": "cleannarsenal:riposte_1h"
+  },
+  "release": {
+    "target": {
+      "type": "AREA",
+      "area": {
+        "angle_degrees": 360,
+        "vertical_range_multiplier": 1
+      }
+    },
+    "sound": {
+      "id": "minecraft:entity.player.attack.knockback"
+    },
+    "animation": "cleannarsenal:1h_riposte_2"
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "knockback": 1,
+          "spell_power_coefficient": 1.2
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "sweep_attack",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 1
+        }
+      ],
+      "sound": {
+        "id": "minecraft:entity.player.attack.sweep"
+      }
+    }
+
+  ],
+  "cost": {
+    "cooldown_duration": 2,
+    "cooldown_proportional": true
+  }
+}

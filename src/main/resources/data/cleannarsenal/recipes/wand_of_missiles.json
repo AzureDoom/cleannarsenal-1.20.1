@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "cleannarsenal:something_strange"
+  },
+  "base": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "item": "cleannarsenal:wand_of_missiles"
+  },
+  "template": {
+    "item": "runes:arcane_stone"
+  }
+}

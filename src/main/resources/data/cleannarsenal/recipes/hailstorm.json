@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "cleannarsenal:something_frozen"
+    },
+    "L": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "LS ",
+    "L S",
+    "LS "
+  ],
+  "result": {
+    "item": "cleannarsenal:hailstorm"
+  }
+}

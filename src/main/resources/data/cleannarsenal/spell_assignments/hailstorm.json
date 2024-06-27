@@ -1,0 +1,5 @@
+{
+  "spell_ids": [ "cleannarsenal:barrage"],
+  "pool": "cleannarsenal:laser_bow",
+  "max_spell_count": 3
+}

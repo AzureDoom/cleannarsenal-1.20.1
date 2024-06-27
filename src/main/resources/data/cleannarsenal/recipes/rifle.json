@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "cleannarsenal:something_burnt"
+    },
+    "L": {
+      "item": "minecraft:copper_ingot"
+    },
+    "C": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "   ",
+    "SLL",
+    "CC "
+  ],
+  "result": {
+    "item": "cleannarsenal:rifle"
+  }
+}

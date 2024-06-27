@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "cleannarsenal:something_heavy"
+    },
+    "L": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "pattern": [
+    "   ",
+    "SLS",
+    "SLS"
+  ],
+  "result": {
+    "item": "cleannarsenal:batteringram"
+  }
+}

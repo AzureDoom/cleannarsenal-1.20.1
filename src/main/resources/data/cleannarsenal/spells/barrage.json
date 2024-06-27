@@ -1,0 +1,33 @@
+{
+  "school": "RANGED_FROST",
+  "range": 64,
+  "learn": {
+    "tier": 0
+  },
+  "cast": {
+    "duration": 4,
+    "haste_affected": false,
+    "animation": "cleannarsenal:bow",
+    "channel_ticks": 6
+  },
+  "release": {
+    "custom_impact": true,
+    "target": {
+      "type": "CURSOR"
+    }
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "knockback": 0,
+          "spell_power_coefficient": 1.5
+        }
+      }
+    }
+  ],
+  "cost": {
+    "item_id": "runes:frost_stone"
+  }
+}

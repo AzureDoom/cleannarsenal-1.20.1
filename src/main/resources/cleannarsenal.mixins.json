@@ -1,0 +1,21 @@
+{
+	"required": true,
+	"package": "com.cleannrooster.cleannarsenal.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"ExampleMixin",
+		"SpellHelperMixin",
+		"SpellHelperMixin2",
+		"SpellSchoolsMixin",
+		"EntityMixin",
+		"PlayerEntityMixin",
+		"AnimationHelperMixin",
+		"LivingEntityMixin"
+	],
+	"client": [
+		"RenderMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:blue_dye"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "A": {
+      "item": "cleannarsenal:something_strange"
+    }
+  },
+  "pattern": [
+    "I I",
+    "LAL",
+    "SLS"
+  ],
+  "result": {
+    "item": "cleannarsenal:trickster_chest"
+  }
+}

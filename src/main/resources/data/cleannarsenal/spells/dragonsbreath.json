@@ -1,0 +1,92 @@
+{
+  "school": "FIRE",
+  "range": 10.0,
+  "learn": {
+    "tier": 2
+  },
+  "cast": {
+    "duration": 1,
+    "animation": "cleannarsenal:aim",
+    "sound": {
+      "id": "entity.warden.sonic_charge",
+      "randomness": 0
+    }
+  },
+  "release": {
+    "target": {
+      "type": "AREA",
+      "area": {
+        "distance_dropoff": "SQUARED",
+        "angle_degrees": 40
+      }
+    },
+    "particles": [
+      {
+        "particle_id": "spell_engine:flame",
+        "angle": 30,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 80.0,
+        "min_speed": 1,
+        "max_speed": 1
+      },
+      {
+        "particle_id": "spell_engine:flame_medium_a",
+        "angle": 30,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 20.0,
+        "min_speed": 1,
+        "max_speed": 1
+      },
+      {
+        "particle_id": "spell_engine:flame_medium_b",
+        "angle": 30,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 20.0,
+        "min_speed": 1,
+        "max_speed": 1
+      }
+    ],
+    "sound": {
+      "id": "entity.blaze.shoot"
+    }
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.6,
+          "knockback": 5
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "lava",
+          "shape": "CIRCLE",
+          "origin": "CENTER",
+          "count": 3.0,
+          "min_speed": 0.5,
+          "max_speed": 3.0
+        }
+      ]
+    },
+    {
+      "action": {
+        "type": "FIRE",
+        "fire": {
+          "duration": 2
+        }
+      }
+    }
+  ],
+  "cost": {
+    "item_id": "runes:fire_stone",
+    "cooldown_duration": 0.5
+  }
+}

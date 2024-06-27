@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:light_blue_dye"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "A": {
+      "item": "cleannarsenal:something_strange"
+    }
+  },
+  "pattern": [
+    "SAS",
+    "L L",
+    "   "
+  ],
+  "result": {
+    "item": "cleannarsenal:trickster_feet"
+  }
+}
