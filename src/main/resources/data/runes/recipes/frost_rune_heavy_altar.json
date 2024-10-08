@@ -1,0 +1,13 @@
+{
+  "type": "runes:crafting",
+  "base": {
+    "item": "cleannarsenal:something_heavy"
+  },
+  "addition": {
+    "item": "cleannarsenal:something_frozen"
+  },
+  "result": {
+    "count": 32,
+    "item": "runes:frost_stone"
+  }
+}

@@ -3,6 +3,7 @@ package com.cleannrooster.cleannarsenal.spells;
 import com.cleannrooster.cleannarsenal.Cleannarsenal;
 import com.cleannrooster.cleannarsenal.PlayerInterface;
 import com.cleannrooster.cleannarsenal.entities.LaserArrow;
+import com.cleannrooster.cleannarsenal.entities.SpinAttack;
 import com.google.common.base.Suppliers;
 import it.unimi.dsi.fastutil.Function;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -91,18 +92,32 @@ public class Spells {
             SpellHelper.performImpacts(data1.caster().getWorld(), data1.caster(),entity, data1.caster(), new SpellInfo(spell,new Identifier(MODID,"flourish")),data1.impactContext());
         }
 
-        if(!data1.caster().getWorld().isClient()) {
+        if(data1.caster().getWorld() instanceof ServerWorld world) {
             if (data1.caster() instanceof PlayerInterface playerInterface && data1.caster().hasStatusEffect(Cleannarsenal.SHADEWALK)) {
 
                 for (Vec3d position : playerInterface.getPositions()) {
                     List<LivingEntity> list ;
                     list = data1.caster().getWorld().getEntitiesByType(TypeFilter.instanceOf(LivingEntity.class), Box.of(position,7,3.5,7),(target) -> TargetHelper.actionAllowed(TargetHelper.TargetingMode.AREA, TargetHelper.Intent.HARMFUL, data1.caster(), target));
+
                     for (Entity entity : list) {
                         BlockHitResult result = data1.caster().getWorld().raycast(new RaycastContext(position,entity.getBoundingBox().getCenter(), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY,entity));
                         if(result != null && result.getPos() != null && !result.getType().equals(HitResult.Type.BLOCK)) {
                             SpellHelper.performImpacts(data1.caster().getWorld(), data1.caster(), entity, data1.caster(), new SpellInfo(spell, new Identifier(MODID, "flourish")), data1.impactContext());
                         }
                     }
+                }
+            }
+            List<? extends SpinAttack> spins = world.getEntitiesByType(TypeFilter.instanceOf(SpinAttack.class), spin -> {
+                if( spin.getOwner() != null && spin.getOwner().isAlive()){
+                    return spin.getOwner().equals(data1.caster());
+                }
+                else{
+                    return false;
+                }
+            });
+            if(!spins.isEmpty()) {
+                for (SpinAttack spin : spins) {
+                    spin.triggerAnim("baseAnim", "spin");
                 }
             }
         }
@@ -248,13 +263,21 @@ public class Spells {
             if (casterEntity instanceof PlayerInterface playerInterface) {
                 playerInterface.setFMJModifier(modifier);
             }
-            shootProjectile(data1.caster().getWorld(), data1.caster(), listNew.get(0), new SpellInfo(spell2, new Identifier(Cleannarsenal.MODID, "fmjinstant")), new SpellHelper.ImpactContext());
-            ParticleHelper.sendBatches(data1.caster(), spell.release.particles);
-            SoundHelper.playSound(data1.caster().getWorld(), data1.caster(), spell.release.sound);
-            Supplier<Collection<ServerPlayerEntity>> trackingPlayers = Suppliers.memoize(() -> {
-                return PlayerLookup.tracking(data1.caster());
-            });
-            AnimationHelper.sendAnimation(data1.caster(), (Collection) trackingPlayers.get(), SpellCast.Animation.RELEASE, spell.release.animation, 1.0F);
+            PlayerEntity player = data1.caster();
+            Entity living2 = TargetHelper.targetFromRaycast(player, spell.range, target -> TargetHelper.actionAllowed(TargetHelper.TargetingMode.DIRECT, TargetHelper.Intent.HARMFUL, player, target));
+            List<Entity> list2 = new ArrayList<Entity>();
+            if(living2 != null) {
+                list2.add(living2);
+            }
+            SpellHelper.performSpell(player.getWorld(),player,new Identifier(Cleannarsenal.MODID, "fmjinstant"),list2, SpellCast.Action.CHANNEL,1.0F);
+            ParticleHelper.sendBatches(player, spell.release.particles);
+            SoundHelper.playSound(player.getWorld(),player,spell.release.sound);
+            if(player.getWorld() instanceof ServerWorld serverWorld) {
+                AnimationHelper.sendAnimation(player, PlayerLookup.tracking(player), SpellCast.Animation.RELEASE, spell.release.animation, 1.0F);
+                AnimationHelper.sendAnimation(player, List.of((ServerPlayerEntity) player), SpellCast.Animation.RELEASE, spell.release.animation, 1.0F);
+
+
+            }
             listNew.remove(0);
         }
         int i = 0;
@@ -270,15 +293,22 @@ public class Spells {
                         if (casterEntity instanceof PlayerInterface playerInterface) {
                             playerInterface.setFMJModifier(modifier);
                         }
-                        shootProjectile(data1.caster().getWorld(), data1.caster(), entity, new SpellInfo(spell2, new Identifier(Cleannarsenal.MODID, "fmjinstant")), new SpellHelper.ImpactContext());
-                        ParticleHelper.sendBatches(data1.caster(), spell.release.particles);
-                        SoundHelper.playSound(data1.caster().getWorld(), data1.caster(), spell.release.sound);
-                        Supplier<Collection<ServerPlayerEntity>> trackingPlayers = Suppliers.memoize(() -> {
-                            return PlayerLookup.tracking(data1.caster());
-                        });
+                PlayerEntity player = data1.caster();
 
-                        AnimationHelper.sendAnimation(data1.caster(), (Collection) trackingPlayers.get(), SpellCast.Animation.RELEASE, spell.release.animation, 1.0F);
-                    });
+                Entity living2 = TargetHelper.targetFromRaycast(player, spell.range, target -> TargetHelper.actionAllowed(TargetHelper.TargetingMode.DIRECT, TargetHelper.Intent.HARMFUL, player, target));
+                    List<Entity> list2 = new ArrayList<Entity>();
+                    if(living2 != null) {
+                        list.add(living2);
+                    }
+                    SpellHelper.performSpell(player.getWorld(),player,new Identifier(Cleannarsenal.MODID, "fmjinstant"),list2, SpellCast.Action.CHANNEL,1.0F);
+                    ParticleHelper.sendBatches(player, spell.release.particles);
+                    SoundHelper.playSound(player.getWorld(),player,spell.release.sound);
+                    if(player.getWorld() instanceof ServerWorld serverWorld) {
+                        AnimationHelper.sendAnimation(player,PlayerLookup.tracking(player), SpellCast.Animation.RELEASE,spell.release.animation,1.0F);
+                        AnimationHelper.sendAnimation(player,List.of((ServerPlayerEntity) player), SpellCast.Animation.RELEASE,spell.release.animation,1.0F);
+
+                    }
+            });
             i++;
         }
         if (casterEntity instanceof PlayerInterface playerInterface) {
@@ -339,7 +369,6 @@ public class Spells {
 
                     int l = EnchantmentHelper.getLevel(Enchantments.PUNCH, data1.caster().getActiveItem());
                     if (l > 0) {
-                        laserArrow.setPunch(l);
                     }
 
                     if (EnchantmentHelper.getLevel(Enchantments.FLAME, data1.caster().getActiveItem()) > 0) {

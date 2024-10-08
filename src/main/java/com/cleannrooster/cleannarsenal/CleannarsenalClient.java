@@ -1,6 +1,7 @@
 package com.cleannrooster.cleannarsenal;
 
 import com.cleannrooster.cleannarsenal.Items.Items;
+import com.cleannrooster.cleannarsenal.client.item.renderer.SpinRenderer;
 import com.cleannrooster.cleannarsenal.client.item.renderer.ThrownRendererEmissive;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -86,6 +87,8 @@ public class CleannarsenalClient implements ClientModInitializer {
         });
         ModelPredicateProviderRegistry.register(Items.LASERBOW.item, new Identifier("pulling"), (stack, world, entity, seed) -> entity != null && entity instanceof SpellCasterClient client && client.isCastingSpell() ? 1.0f : 0.0f);
         EntityRendererRegistry.register(Cleannarsenal.LASERARROW, (context) -> new ThrownRendererEmissive(context,2.0F,true));
+        EntityRendererRegistry.register(Cleannarsenal.LASERARROW, (context) -> new ThrownRendererEmissive(context,2.0F,true));
+        EntityRendererRegistry.register(Cleannarsenal.SPINATTACK, SpinRenderer::new);
 
     }
 }

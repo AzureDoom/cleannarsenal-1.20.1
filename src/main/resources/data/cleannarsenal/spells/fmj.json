@@ -29,7 +29,9 @@
 
       "projectile": {
         "launch_properties": {
-          "velocity": 2.0
+          "homing_angle": 200.0,
+
+          "velocity": 20
         },
         "projectile": {
           "divergence": 0.0,
@@ -55,15 +57,45 @@
                 "min_speed": 0.0,
                 "max_speed": 0.1
               }
-            ],
-            "model": {
-              "model_id": "fire_charge",
-              "scale": 0.001
-            }
+            ]
           }
         }
       }
+
     },
+
+    "particles": [
+      {
+        "particle_id": "spell_engine:flame",
+        "angle": 2,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 400.0,
+        "min_speed":0.1,
+        "max_speed": 20
+      },
+      {
+        "particle_id": "spell_engine:flame_medium_a",
+        "angle": 2,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 100.0,
+        "min_speed": 0.1,
+        "max_speed": 20
+      },
+      {
+        "particle_id": "spell_engine:flame_medium_b",
+        "angle": 20,
+        "shape": "CONE",
+        "rotation": "LOOK",
+        "origin": "LAUNCH_POINT",
+        "count": 100.0,
+        "min_speed": 1,
+        "max_speed": 1
+      }
+    ],
     "animation": "cleannarsenal:recoil",
     "sound": {
       "id": "minecraft:entity.generic.explode"

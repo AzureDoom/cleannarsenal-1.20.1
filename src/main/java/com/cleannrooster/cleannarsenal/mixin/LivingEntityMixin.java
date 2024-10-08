@@ -2,6 +2,7 @@ package com.cleannrooster.cleannarsenal.mixin;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
@@ -24,6 +25,8 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.cleannrooster.cleannarsenal.Cleannarsenal.MODID;
+import static com.cleannrooster.cleannarsenal.api.Attributes.ECHO;
+import static com.extraspellattributes.ReabsorptionInit.WARDING;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
@@ -82,6 +85,11 @@ public class LivingEntityMixin {
                 }
             }
         }
+
+    }
+    @Inject(method = "createLivingAttributes", at = @At("RETURN"))
+    private static void addAttributesArsenal_RETURN(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
+        info.getReturnValue().add(ECHO);
 
     }
 }

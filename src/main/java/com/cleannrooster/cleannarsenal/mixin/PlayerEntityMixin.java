@@ -1,10 +1,13 @@
 package com.cleannrooster.cleannarsenal.mixin;
 
+import com.cleannrooster.cleannarsenal.Cleannarsenal;
 import com.cleannrooster.cleannarsenal.PlayerInterface;
+import com.cleannrooster.cleannarsenal.entities.SpinAttack;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
+import net.spell_engine.entity.SpellProjectile;
 import net.spell_engine.internals.SpellCastSyncHelper;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -63,7 +66,7 @@ public class PlayerEntityMixin implements PlayerInterface {
 
     @Override
     public void clearEntities() {
-        targets.clear();
+        targets = new ArrayList<>();
     }
 
     public List<Entity> getTargetEntities() {
@@ -80,9 +83,11 @@ public class PlayerEntityMixin implements PlayerInterface {
 
     public void addNewPosition(Vec3d vec3d){
         positions.add(vec3d);
-        if(positions.size() > 4){
-            positions.remove(0);
-        }
+        PlayerEntity entity = (PlayerEntity)  (Object) this;
+            SpinAttack spinAttack = new SpinAttack(entity.getWorld(),entity);
+            spinAttack.setPosition(entity.getPos());
+            spinAttack.setOwner(entity);
+            entity.getWorld().spawnEntity(spinAttack);
     }
 
     @Override

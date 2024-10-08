@@ -10,10 +10,10 @@
 		"EntityMixin",
 		"PlayerEntityMixin",
 		"AnimationHelperMixin",
-		"LivingEntityMixin"
+		"LivingEntityMixin",
+		"EntityAttributeMixin"
 	],
 	"client": [
-		"RenderMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

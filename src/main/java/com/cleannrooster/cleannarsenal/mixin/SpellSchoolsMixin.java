@@ -11,9 +11,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SpellSchoolsMixin {
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void static_tail_Cleann(CallbackInfo ci) {
-        SpellSchools.register(Cleannarsenal.RANGED_FROST); // Trigger registration
-        SpellSchools.register(Cleannarsenal.RANGED_FIRE); // Trigger registration
-        SpellSchools.register(Cleannarsenal.RANGED_FIRE_TIMING); // Trigger registration
+        if(Cleannarsenal.RANGED_FROST.attribute != null) {
+            SpellSchools.register(Cleannarsenal.RANGED_FROST); // Trigger registration
+        }
+        if(Cleannarsenal.RANGED_FIRE.attribute != null) {
+
+            SpellSchools.register(Cleannarsenal.RANGED_FIRE); // Trigger registration
+        }
+        if(Cleannarsenal.RANGED_FIRE_TIMING.attribute != null) {
+
+            SpellSchools.register(Cleannarsenal.RANGED_FIRE_TIMING); // Trigger registration
+        }
 
     }
 }

@@ -55,7 +55,7 @@ public class EntityMixin {
                 }
                 playerInterface.addNewPosition(living.getPos());
             }
-            if(living.age % 3 == 1){
+            if(living.age % 6 == 1){
             for(Vec3d vec3d : playerInterface.getPositions()) {
                 produceParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, vec3d);
                 produceParticles(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, vec3d);

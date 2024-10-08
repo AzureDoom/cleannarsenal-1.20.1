@@ -31,7 +31,7 @@ public class Armors {
                             50,
                             10,
                             SoundEvents.ITEM_ARMOR_EQUIP_CHAIN,
-                            () -> Ingredient.ofItems(Items.HEAVY.item)
+                            () -> Ingredient.ofItems(Items.HEAVY.item, net.minecraft.item.Items.NETHERITE_SCRAP)
                     ),
                     ItemConfig.ArmorSet.with(
                             new ItemConfig.ArmorSet.Piece(2)

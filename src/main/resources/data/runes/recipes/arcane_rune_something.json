@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "runes:rune_crafting/base/stone"
+    },
+    {
+      "item": "cleannarsenal:something_strange"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "runes:arcane_stone"
+  }
+}

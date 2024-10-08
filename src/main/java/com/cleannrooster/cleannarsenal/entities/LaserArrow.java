@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
@@ -16,10 +17,14 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.SpellInfo;
+import net.spell_engine.entity.SpellProjectile;
 import net.spell_engine.internals.SpellHelper;
 import net.spell_engine.internals.SpellRegistry;
 import net.spell_engine.internals.casting.SpellCasterEntity;
@@ -87,8 +92,6 @@ public class LaserArrow extends PersistentProjectileEntity implements FlyingItem
                 laserArrow.setOwner(player);
                 laserArrow.setTarget(this.getWorld().getClosestEntity(list, TargetPredicate.DEFAULT,living,living.getX(),living.getY(),living.getZ()));
                 laserArrow.old = living;
-                laserArrow.setDamage(this.getDamage());
-                laserArrow.setPunch(this.getPunch());
                 if(this.isOnFire()){
                     laserArrow.setOnFireFor(100);
                 }
@@ -154,7 +157,13 @@ public class LaserArrow extends PersistentProjectileEntity implements FlyingItem
         }
         super.readCustomDataFromNbt(compoundTag);
     }
-    public LaserArrow(EntityType<? extends PersistentProjectileEntity> entityType, World level) {
+
+    @Override
+    protected ItemStack asItemStack() {
+        return ItemStack.EMPTY;
+    }
+
+    public LaserArrow(EntityType<? extends LaserArrow> entityType, World level) {
         super(entityType, level);
     }
 
@@ -168,8 +177,11 @@ public class LaserArrow extends PersistentProjectileEntity implements FlyingItem
         return new ItemStack(Items.LASERARROWITEM.item);
     }
 
+
+
     @Override
     public void tick() {
+
         this.getWorld().addParticle(ParticleTypes.ELECTRIC_SPARK,this.getX(),this.getY(),this.getZ(),-this.getVelocity().getX(),-this.getVelocity().getY(),-this.getVelocity().z);
     if(!this.getWorld().isClient()  && this.age > 80){
         this.discard();
@@ -185,8 +197,9 @@ public class LaserArrow extends PersistentProjectileEntity implements FlyingItem
     }
         //ProjectileUtil.rotateTowardsMovement(this,0.5F);
 
-        super.tick();
 
+        super.tick();
+        this.age();
     }
 
     @Override
@@ -194,8 +207,4 @@ public class LaserArrow extends PersistentProjectileEntity implements FlyingItem
         this.discard();
     }
 
-    @Override
-    protected ItemStack asItemStack() {
-        return ItemStack.EMPTY;
-    }
 }

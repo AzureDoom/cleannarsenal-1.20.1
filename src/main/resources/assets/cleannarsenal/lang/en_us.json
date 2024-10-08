@@ -14,12 +14,18 @@
   "item.cleannarsenal.juggernaut_head": "Juggernaut Helmet",
   "item.cleannarsenal.juggernaut_chest": "Juggernaut Chestplate",
   "item.cleannarsenal.juggernaut_legs": "Juggernaut Leggings",
-  "item.cleannarsenal.juggernaut_feet": "Jugernaut Boots",
+  "item.cleannarsenal.juggernaut_feet": "Juggernaut Boots",
   "item.cleannarsenal.trickster_head": "Trickster Hood",
   "item.cleannarsenal.trickster_chest": "Trickster Garb",
   "item.cleannarsenal.trickster_legs": "Trickster Leggings",
   "item.cleannarsenal.trickster_feet": "Trickster Boots",
   "item.cleannarsenal.trickster_spell_book": "Trickster's Book of Shadows",
+  "item.cleannarsenal.echoknight_head": "Echo Knight Helmet",
+  "item.cleannarsenal.echoknight_chest":"Echo Knight Chestplate",
+  "item.cleannarsenal.echoknight_legs": "Echo Knight Leggings",
+  "item.cleannarsenal.echoknight_feet": "Echo Knight Boots",
+  "attribute.name.cleannarsenal.echo" : "Chance to Echo a Spell 0.5 Seconds Later",
+
 
   "effect.cleannarsenal.valiant": "Valiant",
   "effect.cleannarsenal.shadewalk": "Shadewalk",
@@ -30,7 +36,7 @@
   "spell.cleannarsenal.roll.name": "Tactical Roll",
   "spell.cleannarsenal.roll.description": "Roll forward. At the end of the roll, you cleave around you, dealing {damage} damage to nearby enemies.",
   "spell.cleannarsenal.shadewalk.name": "Shadewalk",
-  "spell.cleannarsenal.shadewalk.description": "As you walk around, you leave behind shades and smoke. These shades repeat your flourish ability on top of them. Up to four shades can exist at a time.",
+  "spell.cleannarsenal.shadewalk.description": "As you walk around, you leave behind shades and smoke. These shades repeat your flourish ability on top of them.",
   "spell.cleannarsenal.riposte.name": "Riposte",
   "spell.cleannarsenal.riposte.description": "While casting this spell, you are immune to the next attack from an entity. Upon being hit this way, you react with a forward cleave for {damage} damage.",
 

@@ -4,6 +4,7 @@ import com.cleannrooster.cleannarsenal.Config.Default;
 import com.cleannrooster.cleannarsenal.Items.Armors.Armors;
 import com.cleannrooster.cleannarsenal.Items.Items;
 import com.cleannrooster.cleannarsenal.entities.LaserArrow;
+import com.cleannrooster.cleannarsenal.entities.SpinAttack;
 import com.cleannrooster.cleannarsenal.spells.CustomStatusEffect;
 import com.cleannrooster.cleannarsenal.spells.ShadeWalk;
 import com.cleannrooster.cleannarsenal.spells.Spells;
@@ -12,17 +13,22 @@ import com.extraspellattributes.items.ItemInit;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.ClampedEntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.PathAwareEntity;
+import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
@@ -57,6 +63,7 @@ public class Cleannarsenal implements ModInitializer {
 	// That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger("cleannarsenal");
 	public static  String MODID = "cleannarsenal";
+
 	public static SpellSchool RANGED_FIRE = SpellSchools.register(SpellSchools.createMagic("ranged_fire",11776947));
 	public static SpellSchool RANGED_FROST = SpellSchools.register(SpellSchools.createMagic("ranged_frost",11776947));
 
@@ -64,7 +71,10 @@ public class Cleannarsenal implements ModInitializer {
 
 	public static final Identifier RISE_ID = new Identifier(MODID,"rise");
 	public static SoundEvent RISE_EVENT = SoundEvent.of(RISE_ID);
+
 	public static EntityType<LaserArrow> LASERARROW;
+	public static EntityType<SpinAttack> SPINATTACK;
+
 	public static StatusEffect VALIANT;
 	public static StatusEffect SHADEWALK;
 	public static ConfigManager<ItemConfig> itemConfig = new ConfigManager<ItemConfig>
@@ -88,6 +98,15 @@ public class Cleannarsenal implements ModInitializer {
 				new Identifier(MODID, "laserarrow"),
 				FabricEntityTypeBuilder.<LaserArrow>create(SpawnGroup.MISC, LaserArrow::new)
 						.dimensions(EntityDimensions.fixed(0.5F, 0.5F)) // dimensions in Minecraft units of the render
+						.trackRangeBlocks(128)
+						.trackedUpdateRate(1)
+						.build()
+		);
+		SPINATTACK = Registry.register(
+				ENTITY_TYPE,
+				new Identifier(MODID, "shade"),
+				FabricEntityTypeBuilder.<SpinAttack>create(SpawnGroup.MISC, SpinAttack::new)
+						.dimensions(EntityDimensions.fixed(0.6F, 1.8F)) // dimensions in Minecraft units of the render
 						.trackRangeBlocks(128)
 						.trackedUpdateRate(1)
 						.build()
@@ -204,7 +223,7 @@ public class Cleannarsenal implements ModInitializer {
 			}
 				}
 		);
-
+		FabricDefaultAttributeRegistry.register(SPINATTACK, PiglinEntity.createPiglinAttributes());
 		SpellBooks.createAndRegister(new Identifier(MODID,"juggernaut"),Items.KEY);
 		SpellBooks.createAndRegister(new Identifier(MODID,"trickster"),Items.KEY);
 
